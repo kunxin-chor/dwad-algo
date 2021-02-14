@@ -34,22 +34,37 @@ class LinkedList {
     }
   }
   deleteData(dataToDelete) {
-    if (this.head == dataToDelete) {
+    if (this.head.getData() == dataToDelete) {
         let deleted = this.head;
         this.head = deleted.getNext();
         // trash the current node
         deleted = null;
     } else {
       let current = this.head;
-      while (current != null && current.getNext() != dataToDelete) {
+      while (current.getNext() != null && current.getNext().getData() != dataToDelete) {
         current = current.getNext();
       }
       // we either reach end of the linked list or the item BEFORE what we want to delete is found
-      if (current.getNext() == dataToDelete) {
-        current.setNext(dataToDelete.getNext());
+      if (current.getNext() != null && current.getNext().getData() == dataToDelete) {
+        current.setNext(current.getNext().getNext());
         dataToDelete = null;
       }
     }
+  }
+  insertAt(index, newNode) {
+      if (index == 0) {
+          let formerHead = this.head;
+          this.head = newNode;
+          this.head.setNext(formerHead);
+      } else {
+          let current = this.head;
+          for(let i =0; i < index-1; i++) {
+            current = current.getNext();        
+          }
+          let oldNext = current.getNext();
+          current.setNext(newNode);
+          newNode.setNext(oldNext);
+      }
   }
 }
 
