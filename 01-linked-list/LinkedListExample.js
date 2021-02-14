@@ -15,3 +15,9 @@ linkedList.traverse((n)=>{
 })
 
 console.log("102 is at index:", linkedList.find(102));
+
+linkedList.deleteData(102);
+
+linkedList.traverse((n)=>{
+    console.log(n.getName(), n.getData());
+})
