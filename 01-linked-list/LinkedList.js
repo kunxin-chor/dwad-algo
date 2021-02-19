@@ -38,7 +38,7 @@ class LinkedList {
         let deleted = this.head;
         this.head = deleted.getNext();
         // trash the current node
-        deleted = null;
+        return deleted;
     } else {
       let current = this.head;
       while (current.getNext() != null && current.getNext().getData() != dataToDelete) {
@@ -46,8 +46,9 @@ class LinkedList {
       }
       // we either reach end of the linked list or the item BEFORE what we want to delete is found
       if (current.getNext() != null && current.getNext().getData() == dataToDelete) {
+        let deleted = current.getNext();
         current.setNext(current.getNext().getNext());
-        dataToDelete = null;
+        return deleted;
       }
     }
   }
